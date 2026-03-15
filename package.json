@@ -15,7 +15,7 @@
         "format": "prettier . --write",
         "infra:start": "docker compose -f deployment/infra.yml up -d",
         "infra:stop": "docker compose -f deployment/infra.yml down",
-        "infra:restart": "docker compose -f deployment/infra.yml restart"
+        "rebuild-keycloak-theme": "npm run infra:stop && npm run build-keycloak-theme && npm run infra:start"
     },
     "license": "MIT",
     "keywords": [],

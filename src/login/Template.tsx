@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import type { TemplateProps } from "keycloakify/login/TemplateProps";
 import type { KcContext } from "./KcContext";
 import type { I18n } from "./i18n";
+import { ArrowLeft } from "lucide-react";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -40,6 +41,8 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div className="pointer-events-none fixed inset-0 -z-10 bg-muted/30" />
 
             <div className="w-full max-w-md space-y-6">
+
+
                 {/* Logo / Header area */}
                 <div className="text-center">
                     {kcContext.realm.displayNameHtml ? (
@@ -100,6 +103,24 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                         {infoNode}
                     </div>
                 )}
+
+                {/* Back button */}
+                <div className="text-center mt-8">
+                    <button
+                        type="button"
+                        onClick={() => {
+                            if (window.history.length > 1) {
+                                window.history.back();
+                            } else {
+                                window.location.href = "http://localhost:4200";
+                            }
+                        }}
+                        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                    >
+                        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                        Back to Application
+                    </button>
+                </div>
             </div>
         </div>
     );
